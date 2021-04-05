@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
+import { DataService } from "../services/data.service";
 
 @Component({
   selector: 'app-tab1',
@@ -8,17 +9,24 @@ import { Platform } from '@ionic/angular';
 })
 export class Tab1Page {
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform,private dataService: DataService) {
     this.testvariable = platform.url();
     console.log("platform", this.testvariable)
    }
 
+  public searchTerm: string = "";
+  public items: any;
   testvariable: any;
 
   ngOnInit() {
-    console.log("ngoninit1")
+    console.log("ngoninit1");
+    this.setFilteredItems();
   }
 
+
+  setFilteredItems() {
+    this.items = this.dataService.filterItems(this.searchTerm);
+  }
   ionViewWillEnter(){
     console.log("ionviewwillenter2")
   }
