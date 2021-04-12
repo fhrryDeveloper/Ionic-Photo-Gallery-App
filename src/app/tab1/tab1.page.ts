@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { DataService } from "../services/data.service";
+import { Animation, AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -9,7 +10,7 @@ import { DataService } from "../services/data.service";
 })
 export class Tab1Page {
 
-  constructor(platform: Platform,private dataService: DataService) {
+  constructor(platform: Platform, private dataService: DataService, private animationCtrl: AnimationController) {
     this.testvariable = platform.url();
     console.log("platform", this.testvariable)
    }
@@ -23,10 +24,28 @@ export class Tab1Page {
     this.setFilteredItems();
   }
 
+  playFunc() {
+    this.animationCtrl.create()
+    .addElement(document.querySelector('.square'))
+    .duration(1500)
+    .iterations(Infinity)
+    .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+    .fromTo('opacity', '1', '0.2').play();
+  }
+
+  stopFunc() {
+    this.animationCtrl.create()
+    .addElement(document.querySelector('.square'))
+    .duration(1500)
+    .iterations(Infinity)
+    .fromTo('transform', 'translateX(0px)', 'translateX(100px)')
+    .fromTo('opacity', '1', '0.2').pause();
+  }
 
   setFilteredItems() {
     this.items = this.dataService.filterItems(this.searchTerm);
   }
+
   ionViewWillEnter(){
     console.log("ionviewwillenter2")
   }
