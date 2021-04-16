@@ -8,21 +8,28 @@ import { Animation, AnimationController } from '@ionic/angular';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
+
 export class Tab1Page {
+
+  public searchTerm: string = "";
+  public items: any;
+  private animation?: Animation;
+
+  testvariable: any;
+  squareA: any;
+  squareB: any;
+  squareC: any;
 
   constructor(platform: Platform, private dataService: DataService, private animationCtrl: AnimationController) {
     this.testvariable = platform.url();
     console.log("platform", this.testvariable)
    }
 
-  public searchTerm: string = "";
-  public items: any;
-  testvariable: any;
-
   ngOnInit() {
     console.log("ngoninit1");
     this.setFilteredItems();
   }
+
 
   playFunc() {
     this.animationCtrl.create()
