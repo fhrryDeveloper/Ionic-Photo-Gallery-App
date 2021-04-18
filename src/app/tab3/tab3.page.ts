@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { Animation, AnimationController, ModalController } from '@ionic/angular';
+import { ElementRef, Component, ViewChild } from '@angular/core';
+import { AnimationController, ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
+import { Gesture, GestureController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab3',
@@ -8,8 +9,10 @@ import { ModalPage } from '../modal/modal.page';
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-
-  constructor(public modalController: ModalController, public animationCtrl: AnimationController) { }
+  @ViewChild('paragraph') p: ElementRef;
+  inner: any;
+  constructor(public modalController: ModalController, public animationCtrl: AnimationController, public gestureCtrl: GestureController) {
+  }
 
   playfunc() {
     this.animationCtrl.create()
